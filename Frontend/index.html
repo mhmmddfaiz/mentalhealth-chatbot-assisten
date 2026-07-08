@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MindCare — Chatbot Kesehatan Mental Berbasis IndoBERT</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     NAVIGASI
+══════════════════════════════════════ -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-brand">
+      <div class="dot">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+      </div>
+      MindCare
+    </a>
+    <ul class="nav-links">
+      <li><a href="#arsitektur">Arsitektur</a></li>
+      <li><a href="#fitur">Fitur</a></li>
+      <li><a href="#performa">Performa</a></li>
+      <li><a href="#dataset">Dataset</a></li>
+      <li><a href="#tim">Tim</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════
+     HERO
+══════════════════════════════════════ -->
+<section class="section-hero">
+  <div class="hero">
+
+    <!-- Teks Hero -->
+    <div>
+      <div class="hero-eyebrow">
+        <div class="pulse"></div>
+        Krlompok 7· Teknik Informatika 23 TI E
+      </div>
+      <h1>Chatbot Asisten<br><em>Kesehatan Mental</em><br>Berbasis IndoBERT</h1>
+      <p class="hero-sub">
+        Deteksi dan penanganan stres digital menggunakan model bahasa Indonesia terdepan —
+        memahami konteks percakapan Bahasa Indonesia secara akurat dan empatik.
+      </p>
+
+    </div>
+
+   <!-- Chat Preview -->
+<div class="chat-preview" id="demo">
+  <div class="chat-header">
+    <div class="chat-avatar">
+      <!-- Icon MindCare AI -->
+      <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z" fill="#0d9488"/></svg>
+    </div>
+    <div style="flex-grow: 1;">
+      <div class="chat-title">MindCare AI</div>
+      <div class="chat-status">● Online · IndoBERT v2</div>
+    </div>
+    <!-- Tombol Trash/Hapus di pojok kanan atas chat -->
+    <div class="chat-delete-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+    </div>
+  </div>
+
+  <div class="chat-body">
+    <!-- Bubble Chat User -->
+    <div class="chat-row user-row">
+      <div class="bubble user">
+        Skripsiku revisi terus, dosennya susah ditemui, aku capek banget pengen nyerah
+      </div>
+      <div class="chat-time-meta">19.28 <span class="user-badge">Me</span></div>
+    </div>
+
+    <!-- Bubble Chat Bot (MindCare AI) -->
+    <div class="chat-row bot-row">
+      <div class="bubble bot">
+        Kak, aku paham betapa frustrasinya mencari waktu dan kesempatan untuk menemui dosen. Tapi, jangan lupa bahwa kamu sudah berusaha dan tidak ada yang salah dengan itu. Kamu tidak sendirian, banyak orang juga mengalami hal ini. Apakah kamu ingin mencoba mencari alternatif untuk menemui dosen, seperti menghubungi sekretaris dosen atau membuat janji melalui email?
+      </div>
+      
+      <!-- Analisis Emosi IndoBERT Box -->
+      <div class="stress-meter">
+        <div class="stress-label">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+          ANALISIS EMOSI INDOBERT
+        </div>
+        <div class="stress-bar-bg">
+          <!-- Width 92% sesuai nilai skor 92/100 -->
+          <div class="stress-bar" style="width: 92%;"></div>
+        </div>
+        <div class="stress-value-container">
+          <span class="emotion-type">Emosi Negatif · sadness</span>
+          <span class="emotion-score">92/100</span>
+        </div>
+      </div>
+      
+      <div class="chat-time-meta bot-time">19.28</div>
+    </div>
+  </div>
+
+  <!-- Input Area Mockup -->
+  <div class="chat-input-row">
+    <div class="chat-input-fake">Ceritakan perasaanmu di sini...</div>
+    <div class="chat-send">
+      <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" fill="#ffffff"/></svg>
+    </div>
+  </div>
+</div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     STATS BAR
+══════════════════════════════════════ -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div>
+      <div class="stat-num">70,5%</div>
+      <div class="stat-label">Akurasi Deteksi Stres</div>
+    </div>
+    <div>
+      <div class="stat-num"> 4.403+</div>
+      <div class="stat-label">Data Latih Bahasa Indonesia</div>
+    </div>
+    <div>
+      <div class="stat-num">5 Label </div>
+      <div class="stat-label">Kategori Emosi &amp; Stres</div>
+    </div>
+    <div>
+      <div class="stat-num">2.000+ </div>
+      <div class="stat-label">Data Testing</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     ARSITEKTUR SISTEM
+══════════════════════════════════════ -->
+<section id="arsitektur">
+  <div class="section-inner">
+    <div class="section-tag">Arsitektur Sistem</div>
+    <h2>Dibangun di atas IndoBERT<br>yang dioptimasi untuk kesehatan mental</h2>
+    <p class="section-lead">
+      Sistem ini menggabungkan kekuatan pre-trained language model Bahasa Indonesia dengan
+      fine-tuning domain spesifik untuk memahami nuansa emosional.
+    </p>
+
+    <div class="arch-grid">
+
+      <div class="arch-card">
+        <div class="arch-icon" style="background:#E1F5EE;">
+          <svg fill="none" stroke="#0F6E56" stroke-width="2" viewBox="0 0 24 24">
+            <rect x="2" y="3" width="20" height="14" rx="2"/>
+            <path d="M8 21h8M12 17v4"/>
+          </svg>
+        </div>
+        <h3>Frontend — Web Interface</h3>
+        <p>Antarmuka percakapan responsif yang dibangun dengan HTML/CSS/JavaScript. Menampilkan hasil analisis emosi secara real-time kepada pengguna.</p>
+        <span class="arch-badge" style="background:#E1F5EE; color:#085041;">React.js · Tailwind</span>
+      </div>
+
+      <div class="arch-card">
+        <div class="arch-icon" style="background:#EEEDFE;">
+          <svg fill="none" stroke="#534AB7" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <h3>Keamanan &amp; Privasi</h3>
+        <p>Enkripsi end-to-end untuk semua percakapan. Data sensitif kesehatan mental pengguna tidak pernah dibagikan tanpa persetujuan eksplisit.</p>
+      </div>
+
+       <div class="arch-card">
+        <div class="arch-icon" style="background:#E1F5EE;">
+          <svg fill="none" stroke="#0F6E56" stroke-width="2" viewBox="0 0 24 24">
+            <rect x="2" y="3" width="20" height="14" rx="2"/>
+            <path d="M8 21h8M12 17v4"/>
+          </svg>
+        </div>
+        <h3>Komparasi Model — Backend</h3>
+        <p>Komparasi Fine-Tuning IndoBERT, mBERT, dan XLM-RoBERTa pada Klasifikasi Emosi pada Chatbot Kesehatan Mental
+        <span class="arch-badge" style="background:#E1F5EE; color:#085041;">IndoBER · mBERT · XLM-RoBERTa</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     PIPELINE PEMROSESAN
+══════════════════════════════════════ -->
+<section class="pipeline-bg pipeline-section">
+  <div class="section-inner">
+    <div class="section-tag">Alur Pemrosesan</div>
+    <h2>Dari teks ke intervensi<br>dalam satu alur cerdas</h2>
+
+    <div class="pipeline">
+      <div class="pipe-step">
+        <div class="pipe-circle" style="background:#1D9E75;">1</div>
+        <h4>Input Teks</h4>
+        <p>Pesan pengguna diterima melalui antarmuka chat</p>
+      </div>
+      <div class="pipe-step">
+        <div class="pipe-circle" style="background:#7F77DD;">2</div>
+        <h4>Preprocessing</h4>
+        <p>Normalisasi teks, tokenisasi IndoBERT WordPiece</p>
+      </div>
+      <div class="pipe-step">
+        <div class="pipe-circle" style="background:#D85A30;">3</div>
+        <h4>IndoBERT Tokenizer</h4>
+        <p>IndoBERT mengekstrak representasi kontekstual</p>
+      </div>
+      <div class="pipe-step">
+        <div class="pipe-circle" style="background:#BA7517;">4</div>
+        <h4> IndoBERT Classification</h4>
+        <p>Deteksi kategori stres &amp; tingkat keparahan</p>
+      </div>
+      <div class="pipe-step">
+        <div class="pipe-circle" style="background:#BA7517;">5</div>
+        <h4> Confidence Score</h4>
+        <p>Prediksinya akurat atau sesuai dengan permintaan.</p>
+      </div>
+      <div class="pipe-step">
+        <div class="pipe-circle" style="background:#BA7517;">6</div>
+        <h4>  Hybrid Response Generator </h4>
+        <p>Menghasilkan jawaban yang kontekstual, natural, dan akurat</p>
+      </div>
+      <div class="pipe-step">
+        <div class="pipe-circle" style="background:#1D9E75;">7</div>
+        <h4> ChatBot Response </h4>
+        <p>Generasi respons empatik &amp; rekomendasi</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     FITUR UTAMA
+══════════════════════════════════════ -->
+<section id="fitur">
+  <div class="section-inner">
+    <div class="section-tag">Fitur Utama</div>
+    <h2>Dirancang untuk memahami<br>lebih dari sekadar kata-kata</h2>
+    <p class="section-lead">
+      Sistem kami melampaui deteksi kata kunci — memahami konteks, nuansa emosional,
+      dan pola percakapan yang khas dalam Bahasa Indonesia.
+    </p>
+
+    <div class="features-grid">
+
+      <div class="feat-card">
+        <div class="feat-icon" style="background:#E1F5EE;">
+          <svg fill="none" stroke="#0F6E56" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+          </svg>
+        </div>
+        <div>
+          <h3>Chatbot Berbasis Website</h3>
+          <p> Sistem chatbot asisten kesehatan mental berbasis web yang interaktif.</p>
+        </div>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-icon" style="background:#EEEDFE;">
+          <svg fill="none" stroke="#534AB7" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
+          </svg>
+        </div>
+        <div>
+          <h3>Menggunakan Model IndoBERT</h3>
+          <p>Model klasifikasi multi-emosi berbasis IndoBERT.</p>
+        </div>
+      </div>
+
+     
+    
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     PERFORMA / EVALUASI MODEL
+══════════════════════════════════════ -->
+<section class="metrics-bg" id="performa" style="padding: 88px 2rem;">
+  <div class="section-inner">
+    <div class="section-tag" style="color: #9FE1CB;">Evaluasi Model</div>
+    <h2 style="color: white;">Performa yang terukur<br>dan dapat direproduksi</h2>
+
+    <div class="metrics-grid">
+
+      <!-- Metrik Bar -->
+      <div class="metric-list">
+        <div class="metric-item">
+          <div class="metric-row">
+            <span class="metric-name">Akurasi</span>
+            <span class="metric-val">70.5%</span>
+          </div>
+          <div class="metric-bar-bg"><div class="metric-bar" style="width:92.4%"></div></div>
+        </div>
+        <div class="metric-item">
+          <div class="metric-row">
+            <span class="metric-name">F1-Score</span>
+            <span class="metric-val">71.7%</span>
+          </div>
+          <div class="metric-bar-bg"><div class="metric-bar" style="width:91.0%"></div></div>
+        </div>
+      </div>
+
+      <!-- Perbandingan Model -->
+      <div class="compare-card">
+        <h3>Perbandingan Model</h3>
+        <div class="compare-row highlight-row">
+          <span class="model-name">IndoBERT (ours)</span>
+          <div class="model-bar-wrap"><div class="model-bar" style="width:92.4%"></div></div>
+          <span class="model-score">70.5%</span>
+        </div>
+        <div class="compare-row">
+          <span class="model-name">XLM-RoBERTa</span>
+          <div class="model-bar-wrap"><div class="model-bar" style="width:84%; background: rgba(255,255,255,0.25)"></div></div>
+          <span class="model-score" style="color:rgba(255,255,255,0.5)">67.8%</span>
+        </div>
+        <div class="compare-row">
+          <span class="model-name">Multilingual BERT</span>
+          <div class="model-bar-wrap"><div class="model-bar" style="width:87%; background: rgba(255,255,255,0.25)"></div></div>
+          <span class="model-score" style="color:rgba(255,255,255,0.5)">60.5%</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     DATASET
+══════════════════════════════════════ -->
+<section id="dataset">
+  <div class="section-inner">
+    <div class="section-tag">Dataset</div>
+    <h2>Dataset yang digunakan dalam pengembangan project ini<br>di ambil dari kagle serta scraping data melalui Twitter</h2>
+
+    <div class="dataset-card">
+
+      <div>
+        <div class="dataset-pill">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"/>
+          </svg>
+          Indonesian-Twitter-Emotion-Dataset
+        </div>
+        <h3 style="font-size:1.3rem; margin-bottom:.75rem;">Indonesian-Twitter-Emotion-Dataset</h3>
+        <p style="color:var(--text-secondary); font-size:15px;">
+          Dataset ini berisi 4.403 tweet berbahasa Indonesia yang diberi label ke dalam 
+          lima kelas emosi: cinta, marah, sedih, gembira, dan takut.
+        </p>
+        <div class="dataset-stats">
+          <div class="ds-stat">
+            <div class="ds-stat-num">4.403</div>
+            <div class="ds-stat-label">Total Data</div>
+          </div>
+          <div class="ds-stat">
+            <div class="ds-stat-num">5</div>
+            <div class="ds-stat-label">Kelas label</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <p style="font-size:14px; font-weight:600; color:var(--text-secondary); margin-bottom:1rem; text-transform:uppercase; letter-spacing:.05em;">Distribusi Label</p>
+        <div class="label-distribution">
+          <div class="label-row">
+            <div class="label-color" style="background:#1D9E75;"></div>
+            <span class="label-name">Cinta</span>
+            <span class="label-pct" style="color:#0F6E56;">637</span>
+          </div>
+          <div class="label-row">
+            <div class="label-color" style="background:#BA7517;"></div>
+            <span class="label-name">Marah</span>
+            <span class="label-pct" style="color:#854F0B;">1101</span>
+          </div>
+          <div class="label-row">
+            <div class="label-color" style="background:#D85A30;"></div>
+            <span class="label-name">Gembira</span>
+            <span class="label-pct" style="color:#993C1D;">1017</span>
+          </div>
+          <div class="label-row">
+            <div class="label-color" style="background:#7F77DD;"></div>
+            <span class="label-name">Sedih</span>
+            <span class="label-pct" style="color:#534AB7;">997</span>
+          </div>
+          <div class="label-row">
+            <div class="label-color" style="background:#D4537E;"></div>
+            <span class="label-name">Takut</span>
+            <span class="label-pct" style="color:#993556;">649</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     TIM PENELITI
+══════════════════════════════════════ -->
+<section id="tim" class="tim-section">
+  <div class="section-inner">
+    <div class="section-tag">KELOMPOK 7</div>
+    <h2>Anggota Kelompok : <br></h2>
+
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-avatar" style="background:#E1F5EE; color:#085041;">Faiz</div>
+        <div class="team-name">Muhammad Faiz</div>
+        <div class="team-role">2355301130</div>
+        <div class="team-nim">-</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:#EEEDFE; color:#3C3489;">Aul</div>
+        <div class="team-name">Auliana Uswahtun Hasnah</div>
+        <div class="team-role">2355301025</div>
+        <div class="team-nim">-</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:#FAECE7; color:#712B13;">Ridho</div>
+        <div class="team-name">Muhammad Ridho Al Fayiz</div>
+        <div class="team-role">2355301177</div>
+        <div class="team-nim">-</div>
+      </div>
+    </div>
+
+    <div class="team-info">
+      <p>
+        Program Studi Teknik Informatika · Politeknik Caltex Riau 
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     CTA
+══════════════════════════════════════ -->
+<div class="cta-section">
+  <h2>Siap mencoba MindCare?</h2>
+  <p class="section-lead">Dapatkan dukungan kesehatan mental dalam Bahasa Indonesia kapan saja, di mana saja.</p>
+  <a href="Chatbot.html" class="btn-white">Mulai Percakapan</a>
+</div>
+
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
+<footer>
+  <p><strong>MindCare</strong> — Pengembangan Chatbot Asisten Kesehatan Mental Berbasis IndoBERT</p>
+  <p>untuk Deteksi dan Penanganan Stres Digital · Kelompok 7 · 2025</p>
+  <p class="footer-warning">
+    ⚠ Sistem ini bukan pengganti konsultasi profesional kesehatan mental.
+    Jika Anda dalam krisis, hubungi Into The Light Indonesia: 119 ext 8
+  </p>
+</footer>
+
+</body>
+</html>
